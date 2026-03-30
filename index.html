@@ -3,7 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Atelier SPLINTER — Antwerp Printmaking Collective</title>
+<title>Elia Vanderheyden — Artist</title>
+
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  HOW TO UPDATE THIS WEBSITE                                  ║
+  ╠══════════════════════════════════════════════════════════════╣
+  ║  PHOTOS     → search "photo-placeholder" — delete the div    ║
+  ║               and uncomment the <img> tag below it           ║
+  ║  TEXT       → look for <!-- EDIT: --> comments               ║
+  ║  LINKS      → search href="#" for placeholder links          ║
+  ╚══════════════════════════════════════════════════════════════╝
+-->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,19 +22,19 @@
 
 <style>
 /* ══════════════════════════════════════
-   PALETTE — full grayscale
+   PALETTE — soft grayish-green, easy on the eyes
    ══════════════════════════════════════ */
 :root {
-  --bg:           #1c1c1c;
-  --bg-card:      #242424;
-  --bg-card-alt:  #2c2c2c;
-  --border:       #3a3a3a;
-  --border-light: #303030;
-  --accent:       #c0c0c0;   /* silver — the "active" tone */
-  --accent-dim:   #707070;
-  --text:         #d6d6d6;
-  --text-muted:   #888888;
-  --text-dim:     #505050;
+  --bg:           #222c27;
+  --bg-card:      #2b3730;
+  --bg-card-alt:  #323f38;
+  --border:       #3e5246;
+  --border-light: #374840;
+  --accent:       #8ec87a;
+  --accent-dim:   #689a55;
+  --text:         #d2deca;
+  --text-muted:   #88a878;
+  --text-dim:     #5a7860;
   --serif:        'Playfair Display', Georgia, serif;
   --mono:         'Space Mono', 'Courier New', monospace;
 }
@@ -31,6 +42,7 @@
 /* ══════════ RESET ══════════ */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+
 body {
   background: var(--bg);
   color: var(--text);
@@ -39,9 +51,14 @@ body {
   line-height: 1.75;
   min-height: 100vh;
 }
+
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
-img { display: block; width: 100%; object-fit: cover; }
+
+/* ══════════ LANGUAGE TOGGLE ══════════ */
+[lang-nl] { display: none; }
+body.nl [lang-en] { display: none; }
+body.nl [lang-nl] { display: revert; }
 
 /* ══════════ LAYOUT ══════════ */
 .wrap {
@@ -50,14 +67,17 @@ img { display: block; width: 100%; object-fit: cover; }
 }
 @media (max-width: 700px) { .wrap { padding: 0 20px; } }
 
-.section { padding: 44px 0; border-top: 1px solid var(--border); }
+.section {
+  padding: 36px 0;
+  border-top: 1px solid var(--border);
+}
 
 .section-label {
   font-size: 9px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 /* ══════════ CARD ══════════ */
@@ -65,8 +85,11 @@ img { display: block; width: 100%; object-fit: cover; }
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 2px;
-  padding: 18px 20px;
+  padding: 14px 18px;
+  margin-bottom: 10px;
 }
+.card:last-child { margin-bottom: 0; }
+
 .card-title {
   font-size: 9px;
   font-weight: 700;
@@ -93,120 +116,124 @@ nav {
   padding: 14px 52px;
   width: 100%;
 }
-@media (max-width: 700px) { .nav-inner { padding: 12px 20px; flex-wrap: wrap; gap: 10px; } }
+@media (max-width: 700px) { .nav-inner { padding: 14px 20px; } }
 
-.nav-wordmark {
+.nav-name {
   font-family: var(--serif);
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
   color: var(--text);
-  text-transform: uppercase;
 }
 
-.nav-links {
-  display: flex;
-  gap: 28px;
-  list-style: none;
-}
-.nav-links a {
+.nav-right { display: flex; align-items: center; gap: 12px; }
+
+.btn-archive {
   font-size: 9px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  transition: color 0.2s;
+  color: var(--bg);
+  background: var(--accent);
+  padding: 7px 18px;
+  border-radius: 2px;
+  font-family: var(--mono);
+  transition: background 0.2s;
 }
-.nav-links a:hover { color: var(--accent); text-decoration: none; }
-.nav-links a.active { color: var(--text); }
+.btn-archive:hover { background: var(--text); text-decoration: none; }
 
-@media (max-width: 640px) { .nav-links { gap: 14px; } }
+.lang-toggle {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: none;
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 2px;
+  font-family: var(--mono);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.lang-toggle:hover { border-color: var(--accent); color: var(--accent); }
 
 /* ══════════ HERO ══════════ */
 .hero {
-  padding: 72px 0 60px;
-  border-bottom: 1px solid var(--border);
-}
-.hero-inner {
+  padding: 52px 0 48px;
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
-  gap: 20px;
+  gap: 56px;
 }
-.hero-wordmark {
+
+.hero-left {
+  flex: 1 1 0;
+  padding-top: 6px;
+}
+
+.hero-left h1 {
   font-family: var(--serif);
-  font-size: clamp(52px, 10vw, 100px);
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-size: 42px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
   color: var(--text);
-  line-height: 1;
-  text-transform: uppercase;
+  line-height: 1.15;
+  margin-bottom: 12px;
 }
-.hero-sub {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+
+.hero-left .birth {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
 }
-.hero-sub span {
+
+.hero-left .represented {
   font-size: 9px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
+  border-left: 2px solid var(--accent-dim);
+  padding-left: 12px;
+  line-height: 2;
 }
-.hero-sub .dot {
-  width: 3px; height: 3px;
-  border-radius: 50%;
-  background: var(--text-dim);
-}
-.hero-acronym {
-  margin-top: 10px;
-  display: flex;
-  gap: 0;
-}
-.hero-acronym .letter-block {
-  padding: 8px 14px;
-  border: 1px solid var(--border);
-  border-right: none;
-  font-size: 8px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  line-height: 1.4;
-}
-.hero-acronym .letter-block:last-child { border-right: 1px solid var(--border); }
-.hero-acronym .letter-block strong { display: block; color: var(--accent); font-size: 11px; letter-spacing: 0.05em; }
 
-/* ══════════ LATEST PUB ══════════ */
-.pub-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  background: var(--border);
+/* Photo on the right — medium size, portrait ratio */
+.hero-right {
+  flex: 0 0 320px;
+}
+
+@media (max-width: 860px) {
+  .hero { flex-direction: column-reverse; gap: 28px; }
+  .hero-right { flex: 0 0 auto; width: 60%; }
+  .hero-left h1 { font-size: 30px; }
+}
+@media (max-width: 500px) {
+  .hero-right { width: 100%; }
+}
+
+.hero-photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 2px;
-  overflow: hidden;
-}
-@media (max-width: 640px) { .pub-grid { grid-template-columns: 1fr; } }
-
-.pub-img {
   background: var(--bg-card-alt);
-  min-height: 280px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
 }
-.pub-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); }
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
 
+/* Placeholder shown until you add a real photo */
 .photo-placeholder {
   width: 100%;
   height: 100%;
-  min-height: 280px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   color: var(--text-dim);
   font-size: 9px;
   letter-spacing: 0.12em;
@@ -214,267 +241,64 @@ nav {
   text-align: center;
   background: repeating-linear-gradient(
     45deg,
-    var(--bg-card) 0px, var(--bg-card) 16px,
-    var(--bg-card-alt) 16px, var(--bg-card-alt) 32px
+    var(--bg-card) 0px, var(--bg-card) 18px,
+    var(--bg-card-alt) 18px, var(--bg-card-alt) 36px
   );
 }
-.photo-placeholder .icon { font-size: 24px; opacity: 0.2; }
+.photo-placeholder .icon { font-size: 26px; opacity: 0.2; }
 
-.pub-info {
-  background: var(--bg-card);
-  padding: 30px 28px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 14px;
-}
-.pub-info .eyebrow {
-  font-size: 8px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-.pub-info h2 {
-  font-family: var(--serif);
-  font-size: 22px;
-  font-weight: 400;
-  color: var(--text);
-  line-height: 1.3;
-}
-.pub-info p {
-  font-size: 10.5px;
-  line-height: 1.8;
-  color: var(--text-muted);
-  max-width: 360px;
-}
-.btn {
-  display: inline-block;
-  font-size: 8px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--bg);
-  background: var(--accent);
-  padding: 8px 18px;
-  border-radius: 2px;
-  font-family: var(--mono);
-  transition: background 0.2s;
-  align-self: flex-start;
-}
-.btn:hover { background: var(--text); text-decoration: none; }
-
-.btn-ghost {
-  background: none;
-  color: var(--accent);
-  border: 1px solid var(--border);
-  padding: 7px 17px;
-}
-.btn-ghost:hover { border-color: var(--accent); background: none; color: var(--text); }
-
-/* ══════════ PROJECTS ══════════ */
-.projects-grid {
+/* ══════════ CV ROWS ══════════ */
+.cv-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-@media (max-width: 640px) { .projects-grid { grid-template-columns: 1fr; } }
-
-.project-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 2px;
-  padding: 22px 22px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.project-card .year-tag {
-  font-size: 8px;
-  letter-spacing: 0.14em;
-  color: var(--text-dim);
-  background: var(--bg-card-alt);
-  border: 1px solid var(--border-light);
-  padding: 2px 8px;
-  border-radius: 2px;
-  align-self: flex-start;
-}
-.project-card h3 {
-  font-family: var(--serif);
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--text);
-  line-height: 1.3;
-}
-.project-card p {
-  font-size: 10px;
-  line-height: 1.75;
-  color: var(--text-muted);
-  flex: 1;
-}
-.project-card .dot-rule {
-  width: 24px;
-  height: 1px;
-  background: var(--accent-dim);
-}
-
-/* ══════════ INSTAGRAM GRID ══════════ */
-.ig-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 3px;
-}
-@media (max-width: 640px) { .ig-grid { grid-template-columns: repeat(2, 1fr); } }
-
-.ig-cell {
-  aspect-ratio: 1;
-  background: var(--bg-card-alt);
-  border: 1px solid var(--border-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-dim);
-  font-size: 8px;
-  letter-spacing: 0.08em;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  transition: border-color 0.2s;
-}
-.ig-cell:hover { border-color: var(--accent); }
-.ig-cell:hover .ig-overlay { opacity: 1; }
-.ig-cell img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); position: absolute; inset: 0; }
-
-.ig-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.2s;
-  font-size: 8px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.ig-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.ig-handle {
-  font-size: 10px;
-  color: var(--accent);
-  letter-spacing: 0.08em;
-}
-
-/* ══════════ FAQ ══════════ */
-.faq-item {
-  border-top: 1px solid var(--border-light);
-  padding: 16px 0;
-}
-.faq-item:last-child { border-bottom: 1px solid var(--border-light); }
-.faq-q {
-  font-family: var(--serif);
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--text);
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  user-select: none;
-}
-.faq-q::after {
-  content: '+';
-  font-family: var(--mono);
-  font-size: 14px;
-  color: var(--text-dim);
-  flex-shrink: 0;
-  transition: transform 0.2s;
-}
-.faq-item.open .faq-q::after { transform: rotate(45deg); }
-.faq-a {
-  font-size: 10.5px;
-  line-height: 1.8;
-  color: var(--text-muted);
-  max-width: 680px;
-  display: none;
-  padding-top: 12px;
-}
-.faq-item.open .faq-a { display: block; }
-.faq-a ol { padding-left: 18px; }
-.faq-a li { margin-bottom: 6px; }
-
-/* ══════════ MEMBERS ══════════ */
-.members-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-@media (max-width: 760px) { .members-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 480px) { .members-grid { grid-template-columns: 1fr; } }
-
-.member-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 2px;
-  padding: 18px 18px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.member-card .m-name {
-  font-family: var(--serif);
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--text);
-}
-.member-card .m-role {
-  font-size: 8px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent-dim);
-  padding-bottom: 8px;
+  grid-template-columns: 58px 1fr;
+  gap: 6px 14px;
+  padding: 5px 0;
   border-bottom: 1px solid var(--border-light);
+  align-items: baseline;
 }
-.member-card .m-bio {
-  font-size: 9.5px;
-  line-height: 1.7;
-  color: var(--text-muted);
-  flex: 1;
-}
-.member-card .m-links {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-top: 6px;
-}
-.member-card .m-links a, .member-card .m-links span {
+.cv-row:last-child { border-bottom: none; }
+
+.cv-year {
   font-size: 9px;
   color: var(--text-muted);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
+  padding-top: 1px;
+  white-space: nowrap;
 }
-.member-card .m-links a:hover { color: var(--accent); }
+
+.cv-text {
+  font-size: 10px;
+  line-height: 1.65;
+  color: var(--text);
+}
+.cv-text em { color: var(--text-muted); font-style: normal; }
+
+.award-tag {
+  display: inline-block;
+  font-size: 8px;
+  background: rgba(142,200,122,0.09);
+  color: var(--accent);
+  border: 1px solid var(--accent-dim);
+  padding: 2px 7px;
+  border-radius: 2px;
+  letter-spacing: 0.08em;
+  margin-right: 6px;
+  vertical-align: middle;
+}
 
 /* ══════════ CONTACT ══════════ */
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
-@media (max-width: 640px) { .contact-grid { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } }
 
 .contact-block {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 2px;
-  padding: 18px 20px;
+  padding: 16px 18px;
 }
 .contact-block .label {
   font-size: 8px;
@@ -495,18 +319,13 @@ nav {
 /* ══════════ FOOTER ══════════ */
 footer {
   border-top: 1px solid var(--border);
-  padding: 20px 52px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
+  padding: 18px 52px;
+  text-align: center;
   font-size: 8px;
   letter-spacing: 0.12em;
   color: var(--text-dim);
   text-transform: uppercase;
 }
-@media (max-width: 700px) { footer { padding: 16px 20px; } }
 
 /* ══════════ SCROLL REVEAL ══════════ */
 .reveal {
@@ -515,377 +334,497 @@ footer {
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
 .reveal.visible { opacity: 1; transform: none; }
-
-/* ══════════ MARQUEE ══════════ */
-.marquee-wrap {
-  background: var(--bg-card);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 10px 0;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.marquee-track {
-  display: inline-block;
-  animation: marquee 28s linear infinite;
-}
-.marquee-track span {
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  padding: 0 24px;
-}
-.marquee-track span em {
-  color: var(--accent);
-  font-style: normal;
-}
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
 </style>
 </head>
 <body>
 
-<!-- ═══════════ NAV ═══════════ -->
+<!-- ═══════════════════════
+     NAV
+═══════════════════════ -->
 <nav>
   <div class="nav-inner">
-    <span class="nav-wordmark">Splinter</span>
-    <ul class="nav-links">
-      <li><a href="#atelier">Atelier</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#archive">Archive</a></li>
-      <li><a href="#bookshop">Bookshop</a></li>
-      <li><a href="#about">About</a></li>
-    </ul>
+    <span class="nav-name">Elia Vanderheyden</span>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langBtn">NL</button>
+      <a href="/archive" class="btn-archive">
+        <span lang-en>Archive of Works</span>
+        <span lang-nl>Archief</span>
+      </a>
+    </div>
   </div>
 </nav>
 
 
-<!-- ═══════════ HERO ═══════════ -->
-<div class="wrap">
-  <div class="hero">
-    <div class="hero-inner">
-      <div class="hero-wordmark">Atelier<br>Splinter</div>
-      <div class="hero-sub">
-        <span>Antwerp</span>
-        <div class="dot"></div>
-        <span>Contemporary Printmaking</span>
-        <div class="dot"></div>
-        <span>Since 2021</span>
-      </div>
-      <!-- SPLINTER acronym -->
-      <div class="hero-acronym">
-        <div class="letter-block"><strong>St</strong>encil</div>
-        <div class="letter-block"><strong>Pl</strong>ano&shy;graphy</div>
-        <div class="letter-block"><strong>In</strong>taglio</div>
-        <div class="letter-block"><strong>Re</strong>liëf</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ MARQUEE ═══════════ -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <span>Book #</span><span>·</span>
-    <span><em>Printed Image</em></span><span>·</span>
-    <span>Atelier SPLINTER</span><span>·</span>
-    <span>Museum De Reede Wall</span><span>·</span>
-    <span>Jacques Goris Exhibition</span><span>·</span>
-    <span>Blikfabriek, Hoboken, Antwerp</span><span>·</span>
-    <span>Book #</span><span>·</span>
-    <span><em>Printed Image</em></span><span>·</span>
-    <span>Atelier SPLINTER</span><span>·</span>
-    <span>Museum De Reede Wall</span><span>·</span>
-    <span>Jacques Goris Exhibition</span><span>·</span>
-    <span>Blikfabriek, Hoboken, Antwerp</span><span>·</span>
-  </div>
-</div>
-
-
 <div class="wrap">
 
-  <!-- ═══════════ LATEST PUBLICATION ═══════════ -->
-  <div class="section reveal" id="bookshop">
-    <div class="section-label">Latest Publication</div>
-    <div class="pub-grid">
+  <!-- ═══════════════════════
+       HERO
+  ═══════════════════════ -->
+  <div class="hero reveal">
 
-      <div class="pub-img">
-        <!-- REPLACE: <img src="photos/book2.jpg" alt="Book 2: Bound by Print"> -->
-        <div class="photo-placeholder">
-          <span class="icon">◻</span>
-          <p>Book cover photo<br>→ replace with image file</p>
-        </div>
-      </div>
-
-      <div class="pub-info">
-        <span class="eyebrow">Book # Series — Vol. 2</span>
-        <h2>Bound by Print</h2>
-        <p>Bound by Print compiles original graphic works of 15 artists in a custom, fully handmade book. Each copy is unique — printed, assembled, and bound by hand in the SPLINTER tradition.</p>
-        <a href="#bookshop" class="btn">More Info</a>
-      </div>
-
-    </div>
-  </div>
-
-
-  <!-- ═══════════ PROJECTS ═══════════ -->
-  <div class="section reveal" id="atelier">
-    <div class="section-label">Projects</div>
-    <div class="projects-grid">
-
-      <div class="project-card">
-        <span class="year-tag">2021 — Ongoing</span>
-        <div class="dot-rule"></div>
-        <h3>Book #</h3>
-        <p>"Book #" is where SPLINTER originated and has since remained our main focus. Every year, we bring printmakers together to continue our "Book #" series. Each edition emerges from a new perspective, creating unique artist publications. "Book 0: Hello City" marked the beginning in 2021.</p>
-        <a href="#bookshop" class="btn btn-ghost" style="align-self:flex-start; margin-top:6px;">View Books</a>
-      </div>
-
-      <div class="project-card">
-        <span class="year-tag">2023 — Ongoing</span>
-        <div class="dot-rule"></div>
-        <h3>Printed Image</h3>
-        <p>'Printed Image' is a yearly exhibition focusing on artists from all disciplines who are pushing the boundaries of the printed image. We bring them together with more conventional forms of printmaking to create dialogue across media and generations.</p>
-        <a href="#archive" class="btn btn-ghost" style="align-self:flex-start; margin-top:6px;">View Archive</a>
-      </div>
-
-      <div class="project-card">
-        <span class="year-tag">2023 — Ongoing</span>
-        <div class="dot-rule"></div>
-        <h3>SPLINTER Wall at Museum De Reede</h3>
-        <p>A collaborative project with printmaking museum De Reede where we exhibit different artists on our unique SPLINTER wall. We focus on living contemporary artists working on paper with a background in printmaking — exhibited alongside works by Munch, Goya, and Rops.</p>
-      </div>
-
-      <div class="project-card">
-        <span class="year-tag">2024 — Ongoing</span>
-        <div class="dot-rule"></div>
-        <h3>Atelier SPLINTER</h3>
-        <p>Since August 2024, SPLINTER has been building a dedicated space for printmakers based in and around Antwerp to continue their practice after graduating from art academy. The studio is located at the Blikfabriek art hub in Hoboken, Antwerp. Studio spaces available for rent — 24/7 access, water, electricity and WiFi included, access to printing studio.</p>
-        <a href="#about" class="btn" style="align-self:flex-start; margin-top:6px;">€100/month</a>
-      </div>
-
-    </div>
-  </div>
-
-
-  <!-- ═══════════ INSTAGRAM ═══════════ -->
-  <div class="section reveal">
-    <div class="ig-header">
-      <div class="section-label" style="margin-bottom:0;">Follow Us</div>
-      <a href="https://www.instagram.com/atelier.splinter/" target="_blank" class="ig-handle">@atelier.splinter ↗</a>
-    </div>
-    <div class="ig-grid">
-      <!-- REPLACE: each .ig-cell can contain <img src="..."> -->
-      <!-- Cell 1 -->
-      <div class="ig-cell">
-        <div class="photo-placeholder" style="min-height:unset; height:100%;">
-          <span class="icon" style="font-size:16px;">◻</span>
-        </div>
-        <div class="ig-overlay">View on Instagram</div>
-      </div>
-      <!-- Cell 2 -->
-      <div class="ig-cell">
-        <div class="photo-placeholder" style="min-height:unset; height:100%;"></div>
-        <div class="ig-overlay">View on Instagram</div>
-      </div>
-      <!-- Cell 3 -->
-      <div class="ig-cell">
-        <div class="photo-placeholder" style="min-height:unset; height:100%;"></div>
-        <div class="ig-overlay">View on Instagram</div>
-      </div>
-      <!-- Cell 4 -->
-      <div class="ig-cell">
-        <div class="photo-placeholder" style="min-height:unset; height:100%;"></div>
-        <div class="ig-overlay">View on Instagram</div>
-      </div>
-      <!-- Cell 5 -->
-      <div class="ig-cell">
-        <div class="photo-placeholder" style="min-height:unset; height:100%;"></div>
-        <div class="ig-overlay">View on Instagram</div>
-      </div>
-      <!-- Cell 6 -->
-      <div class="ig-cell">
-        <div class="photo-placeholder" style="min-height:unset; height:100%;"></div>
-        <div class="ig-overlay">View on Instagram</div>
-      </div>
-      <!-- Cell 7 -->
-      <div class="ig-cell">
-        <div class="photo-placeholder" style="min-height:unset; height:100%;"></div>
-        <div class="ig-overlay">View on Instagram</div>
-      </div>
-      <!-- Cell 8 -->
-      <div class="ig-cell">
-        <div class="photo-placeholder" style="min-height:unset; height:100%;"></div>
-        <div class="ig-overlay">View on Instagram</div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ═══════════ ABOUT / FAQ ═══════════ -->
-  <div class="section reveal" id="about">
-    <div class="section-label">About SPLINTER</div>
-
-    <div style="margin-bottom: 28px;">
-      <p style="font-family: var(--serif); font-size: 15px; line-height: 1.85; color: var(--text); max-width: 660px;">
-        SPLINTER is an Antwerp-based artist collective with a focus on contemporary printmaking. Our goal is to support printmakers and make the medium more accessible — both technically and intellectually.
+    <div class="hero-left">
+      <!-- EDIT: Name -->
+      <h1>Elia<br>Vanderheyden</h1>
+      <!-- EDIT: birth year / city -->
+      <p class="birth">b. 2000, Belgium</p>
+      <p class="represented">
+        <span lang-en>Represented by<br>Uitstalling / Kube Gallery<br>Genk, Belgium</span>
+        <span lang-nl>Vertegenwoordigd door<br>Uitstalling / Kube Gallery<br>Genk, België</span>
       </p>
     </div>
 
-    <div class="faq-item open">
-      <div class="faq-q">What does SPLINTER stand for?</div>
-      <div class="faq-a">
-        SPLINTER is an acronym for the four pillars of printmaking:<br><br>
-        <strong>St</strong>encil &nbsp;·&nbsp; <strong>Pl</strong>anography &nbsp;·&nbsp; <strong>In</strong>taglio &nbsp;·&nbsp; <strong>Re</strong>liëf
+    <div class="hero-right">
+      <div class="hero-photo">
+        <!--
+          REPLACE PLACEHOLDER:
+          1. Delete the <div class="photo-placeholder"> block below
+          2. Uncomment the <img> line
+          e.g. <img src="photos/portrait.jpg" alt="Elia Vanderheyden, 2025">
+        -->
+        <div class="photo-placeholder">
+          <span class="icon">◻</span>
+          <p>Portrait photo<br>→ replace with<br>your image file</p>
+        </div>
+        <!-- <img src="photos/portrait.jpg" alt="Elia Vanderheyden, 2025"> -->
       </div>
     </div>
 
-    <div class="faq-item">
-      <div class="faq-q">What is the goal of SPLINTER?</div>
-      <div class="faq-a">
-        There are 2 main goals for SPLINTER:<br><br>
-        <ol>
-          <li>Connect with printmakers and non-printers through the printed medium — publications, exhibitions, workshops, and more.</li>
-          <li>Explore the format of books and publications through the guidance of printmaking techniques.</li>
-        </ol>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">What kind of organisation is SPLINTER?</div>
-      <div class="faq-a">
-        SPLINTER is a de facto association, meaning we do not divide any profits. Everything is returned back to the organisation in order to continue future projects.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">What projects does SPLINTER organise?</div>
-      <div class="faq-a">
-        Our recurring projects are:<br><br>
-        <ol>
-          <li><strong>Book #</strong> — A series of yearly artist books challenging the possibilities of the printed medium.</li>
-          <li><strong>Printed Image</strong> — A yearly exhibition pushing the boundaries of the printed image.</li>
-          <li><strong>Jacques Goris Exhibition</strong> — Every December, an exhibition at gallery Jacques Goris VZW for printmaking students at the Royal Academy of Fine Arts Antwerp.</li>
-          <li><strong>SPLINTER × Museum De Reede</strong> — Living contemporary artists exhibited alongside Munch, Goya, and Rops on our dedicated wall.</li>
-          <li><strong>Atelier SPLINTER</strong> — An open printmaking studio at the Blikfabriek art hub, Hoboken, Antwerp.</li>
-        </ol>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Who were the Anonymous Printmakers?</div>
-      <div class="faq-a">
-        Before being called SPLINTER, we were known as Anonymous Printmakers. Anonymous Printmakers was founded by Jullia Pruger, Helena Berg, Zoë Mechiels, and Elia Vanderheyden, who wanted to form a printmaking and publishing collective. This idea began with the celebration of 100 years of 'Bezette Stad' in April 2021 and grew into what is now known as SPLINTER.
-      </div>
-    </div>
-
-  </div>
+  </div><!-- /hero -->
 
 
-  <!-- ═══════════ MEMBERS ═══════════ -->
+  <!-- ═══════════════════════
+       AWARDS
+  ═══════════════════════ -->
   <div class="section reveal">
-    <div class="section-label">Members</div>
-    <div class="members-grid">
-
-      <div class="member-card">
-        <div class="m-name">Zoe Mechiels</div>
-        <div class="m-role">Etching</div>
-        <div class="m-bio"></div>
-        <div class="m-links">
-          <span>zoemechiels@gmail.com</span>
-        </div>
+    <div class="section-label">
+      <span lang-en>Awards</span>
+      <span lang-nl>Prijzen</span>
+    </div>
+    <div class="card">
+      <div class="cv-row">
+        <span class="cv-year">2025</span>
+        <span class="cv-text">
+          <span class="award-tag">2nd Prize</span>
+          <span lang-en>Printmaking — Fonds Hilde De Medts, Deinze, Belgium</span>
+          <span lang-nl>Grafiek — Fonds Hilde De Medts, Deinze, België</span>
+        </span>
       </div>
-
-      <div class="member-card">
-        <div class="m-name">Elia Vanderheyden</div>
-        <div class="m-role">Reliëf Printmaking · Atelier Director</div>
-        <div class="m-bio">A search for the sublime through the merging of archaic and futuristic methods. How does a landscape fill us with wonder and horror at the same time?</div>
-        <div class="m-links">
-          <a href="mailto:eliavanderheyden2@gmail.com">eliavanderheyden2@gmail.com</a>
-          <a href="https://www.eliavanderheyden.com" target="_blank">eliavanderheyden.com</a>
-          <a href="https://www.instagram.com/eliavanderheyden" target="_blank">@eliavanderheyden</a>
-        </div>
+      <div class="cv-row">
+        <span class="cv-year">2024</span>
+        <span class="cv-text">
+          <span class="award-tag">Award</span>
+          <span lang-en>Peto Urzua — Royal Academy of Fine Arts Antwerp</span>
+          <span lang-nl>Peto Urzua — Koninklijke Academie voor Schone Kunsten Antwerpen</span>
+        </span>
       </div>
-
-      <div class="member-card">
-        <div class="m-name">Rune Gybels</div>
-        <div class="m-role">Mezzotint &amp; Drawing</div>
-        <div class="m-bio"></div>
-        <div class="m-links">
-          <a href="mailto:rune.gybels@outlook.com">rune.gybels@outlook.com</a>
-          <a href="https://www.instagram.com/runegybels" target="_blank">@runegybels</a>
-        </div>
+      <div class="cv-row">
+        <span class="cv-year">2024</span>
+        <span class="cv-text">
+          <span class="award-tag">2nd Prize</span>
+          Printmaking Today — Printmaking Today Magazine
+        </span>
       </div>
-
-      <div class="member-card">
-        <div class="m-name">Raquel Cordon</div>
-        <div class="m-role">Drawing &amp; Etching</div>
-        <div class="m-bio">Specialized in prints and drawings inspired by landscapes that define everyday existence. An invitation to share experience with nature from a unique perspective.</div>
-        <div class="m-links">
-          <a href="mailto:vdbraquel@hotmail.com">vdbraquel@hotmail.com</a>
-          <a href="https://www.instagram.com/rae_crdn" target="_blank">@rae_crdn</a>
-        </div>
+      <div class="cv-row">
+        <span class="cv-year">2022</span>
+        <span class="cv-text">
+          <span class="award-tag">1st Prize</span>
+          <span lang-en>Frans Dille — Museum Plantin Moretus &amp; Prof. Dr. Peter de Deyn, Antwerp</span>
+          <span lang-nl>Frans Dille — Museum Plantin Moretus &amp; Prof. Dr. Peter de Deyn, Antwerpen</span>
+        </span>
       </div>
-
-      <div class="member-card">
-        <div class="m-name">Lize Crauwels<br><span style="opacity:0.5; font-size:11px;">/ Frank Henkel</span></div>
-        <div class="m-role">Drawing &amp; Silkscreen</div>
-        <div class="m-bio">Work springs from the digestion of difficult personal history. A quick drawing style and direct language express the immediate necessity to put these stories to paper.</div>
-        <div class="m-links">
-          <a href="mailto:lizecrauwels@gmail.com">lizecrauwels@gmail.com</a>
-          <a href="https://www.instagram.com/frankhenkeltocht" target="_blank">@frankhenkeltocht</a>
-        </div>
-      </div>
-
-      <div class="member-card">
-        <div class="m-name">Ellen Vangheluwe</div>
-        <div class="m-role">Woodcut</div>
-        <div class="m-bio"></div>
-        <div class="m-links">
-          <a href="https://www.ellen.vangheluwe.net" target="_blank">ellen.vangheluwe.net</a>
-          <a href="mailto:ellen@vangheluwe.net">ellen@vangheluwe.net</a>
-        </div>
-      </div>
-
-      <div class="member-card">
-        <div class="m-name">Sophia Van Beethoven</div>
-        <div class="m-role">Lead Graphic Designer</div>
-        <div class="m-bio"></div>
-        <div class="m-links"></div>
-      </div>
-
-      <div class="member-card">
-        <div class="m-name">Amber Croonen</div>
-        <div class="m-role">Member</div>
-        <div class="m-bio"></div>
-        <div class="m-links"></div>
-      </div>
-
     </div>
   </div>
 
 
-  <!-- ═══════════ CONTACT ═══════════ -->
+  <!-- ═══════════════════════
+       EDUCATION
+  ═══════════════════════ -->
+  <div class="section reveal">
+    <div class="section-label">
+      <span lang-en>Education</span>
+      <span lang-nl>Opleiding</span>
+    </div>
+    <div class="card">
+      <div class="cv-row">
+        <span class="cv-year">2024–</span>
+        <span class="cv-text">
+          <span lang-en>Master Educative Arts — Royal Academy of Fine Arts Antwerp</span>
+          <span lang-nl>Educatieve Master — Koninklijke Academie voor Schone Kunsten Antwerpen</span>
+        </span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2022–24</span>
+        <span class="cv-text">
+          <span lang-en>Master Fine Arts Printmaking — Royal Academy of Fine Arts Antwerp</span>
+          <span lang-nl>Master Schone Kunsten Grafiek — Koninklijke Academie voor Schone Kunsten Antwerpen</span>
+        </span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2019–22</span>
+        <span class="cv-text">
+          <span lang-en>Bachelor Printmaking — Royal Academy of Fine Arts Antwerp</span>
+          <span lang-nl>Bachelor Grafiek — Koninklijke Academie voor Schone Kunsten Antwerpen</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════
+       SOLO EXHIBITIONS
+  ═══════════════════════ -->
+  <div class="section reveal">
+    <div class="section-label">
+      <span lang-en>Solo Exhibitions</span>
+      <span lang-nl>Solotentoonstellingen</span>
+    </div>
+    <div class="card">
+      <div class="cv-row">
+        <span class="cv-year">2025</span>
+        <span class="cv-text"><em>Where Have The Birds Gone?</em> — Uitstalling/KUBE Gallery, Genk, Belgium</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2023</span>
+        <span class="cv-text"><em>Eschatology</em> — Jacques Gorus Gallerie, Antwerp, Belgium</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2022</span>
+        <span class="cv-text"><em>Monoliths</em> — The Window Project, Antwerp, Belgium</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════
+       GROUP EXHIBITIONS
+  ═══════════════════════ -->
+  <div class="section reveal">
+    <div class="section-label">
+      <span lang-en>Selected Group Exhibitions</span>
+      <span lang-nl>Geselecteerde Groepstentoonstellingen</span>
+    </div>
+
+    <div class="card">
+      <div class="card-title">2026</div>
+      <div class="cv-row">
+        <span class="cv-year">2026</span>
+        <span class="cv-text">Bank Delen — <em>Groeps Tentoonstelling</em>, Hasselt, Belgium</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">2025</div>
+      <div class="cv-row">
+        <span class="cv-year">2025</span>
+        <span class="cv-text"><em>The Threads of Reality Became Shattered Through Nature's Destruction</em> — SEAS CC Schaerpoort, Knokke</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2025</span>
+        <span class="cv-text"><em>The Arrows of Resilience</em> — MAD Art Gallery, Warsaw, Poland</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2025</span>
+        <span class="cv-text">Prijs voor Grafiek — Mudel Museum van Deinze, Belgium</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">2024–2025</div>
+      <div class="cv-row">
+        <span class="cv-year">2024–25</span>
+        <span class="cv-text"><em>Polyphonic Resonance</em> — Art Museum of Sichuan Fine Arts Institute, Chongqing, China / Antwerp, Belgium / Kentucky, USA</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">2024</div>
+      <div class="cv-row">
+        <span class="cv-year">2024</span>
+        <span class="cv-text"><em>Le Charbonnage Residencies</em> — MAD Gallery Uitstalling, Poznan, Poland</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2024</span>
+        <span class="cv-text">
+          <span lang-en>Master Expo — Royal Academy of Fine Arts Antwerp</span>
+          <span lang-nl>Master Expo — Koninklijke Academie voor Schone Kunsten Antwerpen</span>
+        </span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2024</span>
+        <span class="cv-text">Ensor × Studio 23 — Studio 23, Ghent, Belgium</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2024</span>
+        <span class="cv-text"><em>Voyage Voyage II</em> — The Platform, Antwerp, Belgium</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">2023</div>
+      <div class="cv-row">
+        <span class="cv-year">2023</span>
+        <span class="cv-text"><em>Close to Twilight</em> — Galerie 10a, Zweveghem, Belgium</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2023</span>
+        <span class="cv-text"><em>Down to Earth</em> — ITHAKA, Leuven, Belgium</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2023</span>
+        <span class="cv-text"><em>Bound by Print</em> — De.Kamer_remaK.eD, Antwerp</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2023</span>
+        <span class="cv-text"><em>In Touch</em> — On Boards Biennale, Antwerp</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2023</span>
+        <span class="cv-text"><em>Droomland Genck</em> — Emile Van Dorenmuseum, Genk</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2023</span>
+        <span class="cv-text"><em>Young Botanical Artists</em> — Shirley Sherwood Gallery, London, UK</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2023</span>
+        <span class="cv-text"><em>Dreamscapes</em> — Le Charbonnage, Genk, Belgium</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">2021–2022</div>
+      <div class="cv-row">
+        <span class="cv-year">2022</span>
+        <span class="cv-text"><em>Uitgestald 1</em> — Gallerij De Uitstalling, Genk, Belgium</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2022</span>
+        <span class="cv-text">
+          <span lang-en>Prijs Frans Dille — Museum Plantijn Moretus, Antwerp</span>
+          <span lang-nl>Prijs Frans Dille — Museum Plantijn Moretus, Antwerpen</span>
+        </span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2021</span>
+        <span class="cv-text">On Boards Biennale, Antwerp, Belgium</span>
+      </div>
+    </div>
+
+  </div><!-- /group exhibitions -->
+
+
+  <!-- ═══════════════════════
+       ART FAIRS
+  ═══════════════════════ -->
+  <div class="section reveal">
+    <div class="section-label">
+      <span lang-en>Art Fairs</span>
+      <span lang-nl>Kunstbeurzen</span>
+    </div>
+    <div class="card">
+      <div class="cv-row">
+        <span class="cv-year">2025</span>
+        <span class="cv-text">
+          <span lang-en>Art Antwerp — Represented by Uitstalling/KUBE Gallery</span>
+          <span lang-nl>Art Antwerp — Vertegenwoordigd door Uitstalling/KUBE Gallery</span>
+        </span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2024</span>
+        <span class="cv-text">
+          <span lang-en>Art Antwerp — Represented by Uitstalling Art Gallery</span>
+          <span lang-nl>Art Antwerp — Vertegenwoordigd door Uitstalling Art Gallery</span>
+        </span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2024</span>
+        <span class="cv-text">Art On Paper Brussels — Studio 23</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2024</span>
+        <span class="cv-text">Art Luxembourg — Studio 23</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════
+       PUBLICATIONS
+  ═══════════════════════ -->
+  <div class="section reveal">
+    <div class="section-label">
+      <span lang-en>Publications</span>
+      <span lang-nl>Publicaties</span>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span lang-en>Artist Books</span>
+        <span lang-nl>Kunstenaarsboeken</span>
+      </div>
+      <div class="cv-row"><span class="cv-year">2024</span><span class="cv-text"><em>Noise Series</em> — Antwerp</span></div>
+      <div class="cv-row"><span class="cv-year">2024</span><span class="cv-text"><em>Untitled</em> — Antwerp</span></div>
+      <div class="cv-row"><span class="cv-year">2023</span><span class="cv-text"><em>Black Series</em> — Antwerp</span></div>
+      <div class="cv-row"><span class="cv-year">2022</span><span class="cv-text"><em>A.L.D.</em> — Antwerp</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span lang-en>Collaborative &amp; Catalogue</span>
+        <span lang-nl>Samenwerkingen &amp; Catalogus</span>
+      </div>
+      <div class="cv-row"><span class="cv-year">2023</span><span class="cv-text">SPLINTER <em>Book 2: Bound by Print</em></span></div>
+      <div class="cv-row"><span class="cv-year">2022</span><span class="cv-text">Gallery De Uitstalling <em>Uitgestald-1</em>, Genk</span></div>
+      <div class="cv-row"><span class="cv-year">2022</span><span class="cv-text">Anonymous Printmakers <em>Book 1: Unseen World</em></span></div>
+      <div class="cv-row"><span class="cv-year">2021</span><span class="cv-text">Anonymous Printmakers <em>Book 0: Hello City</em></span></div>
+    </div>
+
+  </div>
+
+
+  <!-- ═══════════════════════
+       PROJECTS & RESIDENCIES
+  ═══════════════════════ -->
+  <div class="section reveal">
+    <div class="section-label">
+      <span lang-en>Projects &amp; Residencies</span>
+      <span lang-nl>Projecten &amp; Residenties</span>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span lang-en>External Projects</span>
+        <span lang-nl>Externe Projecten</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2025</span>
+        <span class="cv-text">
+          <span lang-en>Arresthuis Antwerpen — Commissioned wall tapestry, 17 × 3 m</span>
+          <span lang-nl>Arresthuis Antwerpen — Wandtapijt in opdracht, 17 × 3 m</span>
+        </span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2024–</span>
+        <span class="cv-text">
+          <span lang-en>Atelier Director — Atelier SPLINTER</span>
+          <span lang-nl>Atelierleider — Atelier SPLINTER</span>
+        </span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2021–</span>
+        <span class="cv-text">
+          <span lang-en>Co-founder &amp; Chairman — Atelier SPLINTER</span>
+          <span lang-nl>Medeoprichter &amp; Voorzitter — Atelier SPLINTER</span>
+        </span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2021</span>
+        <span class="cv-text">The Unthinkable Experiment <em>Chapter Freedom</em> — La Biomista / La Mouseion</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span lang-en>Residencies</span>
+        <span lang-nl>Residenties</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2023</span>
+        <span class="cv-text">Le Charbonnage Residency — Genk, Belgium</span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ═══════════════════════
+       COLLECTIONS
+  ═══════════════════════ -->
+  <div class="section reveal">
+    <div class="section-label">
+      <span lang-en>Collections</span>
+      <span lang-nl>Collecties</span>
+    </div>
+    <div class="card">
+      <div class="cv-row"><span class="cv-year">—</span><span class="cv-text">Museum Plantin Moretus, Antwerp</span></div>
+      <div class="cv-row"><span class="cv-year">—</span><span class="cv-text">Gallery De Uitstalling, Genk</span></div>
+      <div class="cv-row"><span class="cv-year">—</span><span class="cv-text">Gallery 10a</span></div>
+      <div class="cv-row"><span class="cv-year">—</span><span class="cv-text">Het Rubenshuis, Antwerp</span></div>
+      <div class="cv-row"><span class="cv-year">—</span><span class="cv-text">Jan De Nul — Arresthuis Hoboken, Antwerp</span></div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════
+       LECTURES
+  ═══════════════════════ -->
+  <div class="section reveal">
+    <div class="section-label">
+      <span lang-en>Lectures &amp; Workshops</span>
+      <span lang-nl>Lezingen &amp; Workshops</span>
+    </div>
+    <div class="card">
+      <div class="cv-row">
+        <span class="cv-year">2023</span>
+        <span class="cv-text">Fameus — <em>A.I. and the Future of Art</em>, with Vincent Buyssens, Antwerp</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2023</span>
+        <span class="cv-text">
+          <span lang-en>Royal Academy of Fine Arts Antwerp — <em>Pixels and Paintings: A.I.</em>, with Jeroen Cluckers</span>
+          <span lang-nl>Koninklijke Academie Antwerpen — <em>Pixels and Paintings: A.I.</em>, met Jeroen Cluckers</span>
+        </span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2022</span>
+        <span class="cv-text">KASKA-dko — <em>Printmaking, Lasercut &amp; Artificial Intelligence</em>, Antwerp</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════
+       CONTACT
+  ═══════════════════════ -->
   <div class="section reveal" style="padding-bottom: 60px;">
     <div class="section-label">Contact</div>
     <div class="contact-grid">
 
+      <!-- EDIT: Artist details -->
       <div class="contact-block">
-        <div class="label">Get in Touch</div>
-        <a href="mailto:info@ateliersplinter.com">info@ateliersplinter.com</a>
-        <a href="https://www.instagram.com/atelier.splinter/" target="_blank">@atelier.splinter</a>
-        <a href="https://www.ateliersplinter.com" target="_blank">ateliersplinter.com</a>
+        <div class="label">
+          <span lang-en>Artist</span>
+          <span lang-nl>Kunstenaar</span>
+        </div>
+        <a href="mailto:eliavanderheyden2@gmail.com">eliavanderheyden2@gmail.com</a>
+        <a href="tel:+32488096239">+32 488 09 62 39</a>
+        <a href="https://www.eliavanderheyden.com" target="_blank">eliavanderheyden.com</a>
+        <a href="https://www.instagram.com/eliavanderheyden" target="_blank">@eliavanderheyden</a>
       </div>
 
+      <!-- EDIT: Gallery details -->
       <div class="contact-block">
-        <div class="label">Studio Location</div>
-        <p>Atelier SPLINTER</p>
-        <p>Blikfabriek Art Hub</p>
-        <p>Hoboken, Antwerp</p>
-        <p style="margin-top: 6px; color: var(--text-muted);">Studio spaces available — €100/month</p>
+        <div class="label">
+          <span lang-en>Gallery</span>
+          <span lang-nl>Galerie</span>
+        </div>
+        <p>Uitstalling / Kube Gallery</p>
+        <a href="https://www.uitstalling.be" target="_blank">uitstalling.be</a>
+        <!-- EDIT: replace with gallery Instagram handle -->
+        <a href="https://www.instagram.com/GALLERY_HANDLE" target="_blank">@gallery_handle</a>
+      </div>
+
+      <!-- EDIT: Atelier details -->
+      <div class="contact-block">
+        <div class="label">Atelier Splinter</div>
+        <p>
+          <span lang-en>Co-founder &amp; Chairman</span>
+          <span lang-nl>Medeoprichter &amp; Voorzitter</span>
+        </p>
+        <!-- EDIT: replace with real URL -->
+        <a href="#" target="_blank">ateliersplinter.be</a>
+        <!-- EDIT: replace with Splinter Instagram handle -->
+        <a href="https://www.instagram.com/SPLINTER_HANDLE" target="_blank">@splinter_handle</a>
       </div>
 
     </div>
@@ -894,22 +833,23 @@ footer {
 </div><!-- /wrap -->
 
 
-<!-- ═══════════ FOOTER ═══════════ -->
+<!-- ═══════════════════════
+     FOOTER
+═══════════════════════ -->
 <footer>
-  <span>&copy; 2025 Atelier SPLINTER &nbsp;·&nbsp; Since 2021</span>
-  <span>Webdesign by <a href="https://www.eliavanderheyden.com" style="color: var(--text-muted);">Elia Vanderheyden</a></span>
+  &copy; 2025 Elia Vanderheyden &nbsp;·&nbsp;
+  <span lang-en>All rights reserved</span>
+  <span lang-nl>Alle rechten voorbehouden</span>
 </footer>
 
 
 <script>
-  /* ── FAQ accordion ── */
-  document.querySelectorAll('.faq-q').forEach(q => {
-    q.addEventListener('click', () => {
-      const item = q.closest('.faq-item');
-      const wasOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!wasOpen) item.classList.add('open');
-    });
+  /* ── Language toggle ── */
+  const btn = document.getElementById('langBtn');
+  btn.addEventListener('click', () => {
+    const isNL = document.body.classList.toggle('nl');
+    btn.textContent = isNL ? 'EN' : 'NL';
+    document.documentElement.lang = isNL ? 'nl' : 'en';
   });
 
   /* ── Scroll reveal ── */
@@ -921,20 +861,8 @@ footer {
       }
     });
   }, { threshold: 0.04, rootMargin: '0px 0px -30px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-  /* ── Nav active state on scroll ── */
-  const sections = document.querySelectorAll('[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 120) current = s.id;
-    });
-    navLinks.forEach(a => {
-      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-    });
-  });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 
 </body>
