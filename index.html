@@ -5,26 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Elia Vanderheyden — Artist</title>
 
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
 /* ══════════════════════════════════════
-   PALETTE — soft grayish-green, easy on the eyes
+   PALETTE
    ══════════════════════════════════════ */
 :root {
-  --bg:           #222c27;
-  --bg-card:      #2b3730;
-  --bg-card-alt:  #323f38;
-  --border:       #3e5246;
-  --border-light: #374840;
+  --bg:           #2e3d34;   /* lighter, warmer forest green */
+  --bg-card:      #364540;
+  --bg-card-alt:  #3e5048;
+  --border:       #4a6255;
+  --border-light: #405548;
   --accent:       #8ec87a;
   --accent-dim:   #689a55;
-  --text:         #d2deca;
-  --text-muted:   #88a878;
-  --text-dim:     #5a7860;
+  --text:         #d8e4cc;
+  --text-muted:   #8aaa78;
+  --text-dim:     #5e7a65;
   --serif:        'Playfair Display', Georgia, serif;
   --mono:         'Space Mono', 'Courier New', monospace;
 }
@@ -37,7 +36,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--mono);
-  font-size: 16px;
+  font-size: 11px;
   line-height: 1.75;
   min-height: 100vh;
 }
@@ -45,50 +44,47 @@ body {
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* ══════════ LANGUAGE TOGGLE ══════════ */
+/* ══════════ LANGUAGE ══════════ */
 [lang-nl] { display: none; }
 body.nl [lang-en] { display: none; }
 body.nl [lang-nl] { display: revert; }
 
 /* ══════════ LAYOUT ══════════ */
-.wrap {
-  width: 100%;
-  padding: 0 52px;
-}
+.wrap { width: 100%; padding: 0 52px; }
 @media (max-width: 700px) { .wrap { padding: 0 20px; } }
 
 .section {
-  padding: 36px 0;
-  border-top: none;
+  padding: 32px 0;
+  border-top: 1px solid var(--border-light);
 }
 
 .section-label {
-  font-size: 11px;
+  font-size: 9px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 /* ══════════ CARD ══════════ */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 2px;
+  border-radius: 3px;
   padding: 14px 18px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .card:last-child { margin-bottom: 0; }
 
 .card-title {
-  font-size: 11px;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 10px;
   padding-bottom: 6px;
-  border-bottom: none
+  border-bottom: 1px solid var(--border-light);
 }
 
 /* ══════════ NAV ══════════ */
@@ -97,49 +93,69 @@ nav {
   top: 0;
   z-index: 100;
   background: var(--bg);
-  border-bottom: none;
+  border-bottom: 1px solid var(--border);
 }
 .nav-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 52px;
+  padding: 13px 52px;
   width: 100%;
 }
-@media (max-width: 700px) { .nav-inner { padding: 14px 20px; } }
+@media (max-width: 700px) { .nav-inner { padding: 12px 20px; gap: 8px; flex-wrap: wrap; } }
 
 .nav-name {
   font-family: var(--serif);
-  font-size: 19px;
+  font-size: 16px;
   font-weight: 400;
   letter-spacing: 0.05em;
   color: var(--text);
 }
 
-.nav-right { display: flex; align-items: center; gap: 12px; }
+.nav-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 
-.btn-archive {
-  font-size: 16px;
-  letter-spacing: 0.18em;
+/* ── Download Portfolio: solid green highlight ── */
+.btn-portfolio {
+  font-size: 9px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--bg);
+  color: #0e1f14;                /* dark text on green */
   background: var(--accent);
-  padding: 7px 18px;
-  border-radius: 2px;
+  border: 1.5px solid var(--accent);
+  padding: 7px 16px;
+  border-radius: 3px;
   font-family: var(--mono);
-  transition: background 0.2s;
+  font-weight: 700;
+  transition: background 0.18s, color 0.18s;
+  cursor: pointer;
 }
-.btn-archive:hover { background: var(--text); text-decoration: none; }
+.btn-portfolio:hover { background: #a8e090; border-color: #a8e090; text-decoration: none; }
 
+/* ── Catalogue: outlined ghost ── */
+.btn-catalogue {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: transparent;
+  border: 1.5px solid var(--accent-dim);
+  padding: 7px 16px;
+  border-radius: 3px;
+  font-family: var(--mono);
+  transition: border-color 0.18s, color 0.18s, background 0.18s;
+}
+.btn-catalogue:hover { border-color: var(--accent); background: rgba(142,200,122,0.08); text-decoration: none; }
+
+/* ── Lang toggle ── */
 .lang-toggle {
-  font-size: 11px;
+  font-size: 9px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-muted);
   background: none;
   border: 1px solid var(--border);
   padding: 6px 12px;
-  border-radius: 2px;
+  border-radius: 3px;
   font-family: var(--mono);
   cursor: pointer;
   transition: border-color 0.2s, color 0.2s;
@@ -148,65 +164,72 @@ nav {
 
 /* ══════════ HERO ══════════ */
 .hero {
-  padding: 52px 0 48px;
+  padding: 48px 0 40px;
   display: flex;
   align-items: flex-start;
-  gap: 56px;
+  gap: 52px;
 }
 
-.hero-left {
-  flex: 1 1 0;
-  padding-top: 6px;
-}
+.hero-left { flex: 1 1 0; padding-top: 4px; }
 
 .hero-left h1 {
   font-family: var(--serif);
-  font-size: 48px;
+  font-size: 44px;
   font-weight: 400;
   letter-spacing: 0.02em;
   color: var(--text);
   line-height: 1.15;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .hero-left .birth {
-  font-size: 14px;
+  font-size: 10px;
   color: var(--text-dim);
   letter-spacing: 0.1em;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .hero-left .represented {
-  font-size: 11px;
+  font-size: 9px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
   border-left: 2px solid var(--accent-dim);
   padding-left: 12px;
-  line-height: 2;
+  line-height: 2.1;
+  margin-bottom: 22px;
 }
 
-/* Photo on the right — medium size, portrait ratio */
-.hero-right {
-  flex: 0 0 320px;
+/* Short statement in hero — key professional touch */
+.hero-statement {
+  font-family: var(--serif);
+  font-size: 12px;
+  line-height: 1.85;
+  color: var(--text-muted);
+  max-width: 480px;
+  border-top: 1px solid var(--border-light);
+  padding-top: 18px;
+  font-style: italic;
 }
+
+/* ── Photo: square, rounded corners, smaller ── */
+.hero-right { flex: 0 0 220px; }
 
 @media (max-width: 860px) {
-  .hero { flex-direction: column-reverse; gap: 28px; }
-  .hero-right { flex: 0 0 auto; width: 60%; }
-  .hero-left h1 { font-size: 36px; }
+  .hero { flex-direction: column-reverse; gap: 24px; }
+  .hero-right { flex: 0 0 auto; width: 180px; }
+  .hero-left h1 { font-size: 32px; }
 }
-@media (max-width: 500px) {
-  .hero-right { width: 100%; }
-}
+@media (max-width: 500px) { .hero-right { width: 140px; } }
 
 .hero-photo {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 1 / 1;          /* square */
+  overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 2px;
+  border-radius: 10px;           /* rounded frame */
+  background: var(--bg-card-alt);
 }
-
 .hero-photo img {
   width: 100%;
   height: 100%;
@@ -215,58 +238,79 @@ nav {
   display: block;
 }
 
-/* Placeholder shown until you add a real photo */
-.photo-placeholder {
-  width: 100%;
-  height: 100%;
+/* ══════════ FEATURED WORK teaser (professional: art above the fold) ══════════ */
+.featured-strip {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  color: var(--text-dim);
-  font-size: 11px;
-  letter-spacing: 0.12em;
+  gap: 3px;
+  margin-bottom: 0;
+  border-top: 1px solid var(--border-light);
+  padding-top: 32px;
+}
+.featured-thumb {
+  flex: 1;
+  aspect-ratio: 4 / 3;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+.featured-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(0.92);
+  transition: filter 0.25s, transform 0.35s;
+}
+.featured-thumb:hover img { filter: brightness(1); transform: scale(1.03); }
+
+/* placeholder tiles for the strip */
+.thumb-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8px; letter-spacing: 0.1em; color: var(--text-dim);
   text-transform: uppercase;
-  text-align: center;
   background: repeating-linear-gradient(
     45deg,
-    var(--bg-card) 0px, var(--bg-card) 18px,
-    var(--bg-card-alt) 18px, var(--bg-card-alt) 36px
+    var(--bg-card) 0px, var(--bg-card) 14px,
+    var(--bg-card-alt) 14px, var(--bg-card-alt) 28px
   );
 }
-.photo-placeholder .icon { font-size: 32px; opacity: 0.2; }
+.featured-caption {
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-top: 8px;
+  text-align: right;
+}
+.featured-caption a { color: var(--text-dim); }
+.featured-caption a:hover { color: var(--accent); }
 
 /* ══════════ CV ROWS ══════════ */
 .cv-row {
   display: grid;
   grid-template-columns: 58px 1fr;
   gap: 6px 14px;
-  padding: 5px 0;
-  border-bottom: none;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-light);
   align-items: baseline;
 }
 .cv-row:last-child { border-bottom: none; }
 
 .cv-year {
-  font-size: 11px;
+  font-size: 9px;
   color: var(--text-muted);
   letter-spacing: 0.06em;
-  padding-top: 1px;
   white-space: nowrap;
 }
 
-.cv-text {
-  font-size: 12px;
-  line-height: 1.65;
-  color: var(--text);
-}
+.cv-text { font-size: 10px; line-height: 1.65; color: var(--text); }
 .cv-text em { color: var(--text-muted); font-style: normal; }
 
 .award-tag {
   display: inline-block;
-  font-size: 11px;
-  background: rgba(142,200,122,0.09);
+  font-size: 8px;
+  background: rgba(142,200,122,0.10);
   color: var(--accent);
   border: 1px solid var(--accent-dim);
   padding: 2px 7px;
@@ -287,56 +331,62 @@ nav {
 .contact-block {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 2px;
+  border-radius: 3px;
   padding: 16px 18px;
 }
 .contact-block .label {
-  font-size: 11px;
+  font-size: 8px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 10px;
 }
 .contact-block p,
-.contact-block a {
-  font-size: 12px;
-  line-height: 1.9;
-  color: var(--text);
-  display: block;
-}
+.contact-block a { font-size: 10px; line-height: 1.9; color: var(--text); display: block; }
 .contact-block a:hover { color: var(--accent); }
 
 /* ══════════ FOOTER ══════════ */
 footer {
   border-top: 1px solid var(--border);
-  padding: 18px 52px;
-  text-align: center;
-  font-size: 11px;
+  padding: 16px 52px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 8px;
   letter-spacing: 0.12em;
   color: var(--text-dim);
   text-transform: uppercase;
 }
+@media (max-width: 700px) { footer { padding: 14px 20px; } }
 
 /* ══════════ SCROLL REVEAL ══════════ */
-.reveal {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
-}
+.reveal { opacity: 0; transform: translateY(10px); transition: opacity 0.55s ease, transform 0.55s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════
-     NAV
-═══════════════════════ -->
+<!-- ═══════ NAV ═══════ -->
 <nav>
   <div class="nav-inner">
     <span class="nav-name">Elia Vanderheyden</span>
     <div class="nav-right">
       <button class="lang-toggle" id="langBtn">NL</button>
-      <a href="images/Portfolio Elia Vanderheyden 2026 Portfolio update 03_03_26.pdf" class="btn-Download Portfolio">
+
+      <!-- Catalogue button → Artsy -->
+      <a href="https://www.artsy.net/artist/elia-vanderheyden"
+         target="_blank"
+         class="btn-catalogue">
+        <span lang-en>Catalogue</span>
+        <span lang-nl>Catalogus</span>
+      </a>
+
+      <!-- Download Portfolio → highlighted green -->
+      <a href="images/Portfolio Elia Vanderheyden 2026 Portfolio update 03_03_26.pdf"
+         class="btn-portfolio"
+         download>
         <span lang-en>Download Portfolio</span>
         <span lang-nl>Download Portfolio</span>
       </a>
@@ -347,32 +397,65 @@ footer {
 
 <div class="wrap">
 
-<!-- ═══════════════════════
-     HERO
-═══════════════════════ -->
-<div class="hero reveal">
+  <!-- ═══════ HERO ═══════ -->
+  <div class="hero reveal">
 
-  <div class="hero-left">
-    <h1>Elia Vanderheyden</h1>
-    <p class="birth">b. 2000, Belgium</p>
-    <p class="represented">
-      <span lang-en>Represented by: <a href="https://www.uitstalling.com/uitstalling-artists/elia-vanderheyden" target="_blank">uitstalling.com</a> / <a href="https://www.uitstalling.com/uitstalling-artists/elia-vanderheyden" target="_blank">KUBE Gallery</a><br>Genk, Belgium</span>
-      <span lang-nl>Vertegenwoordigd door: <a href="https://www.uitstalling.com/uitstalling-artists/elia-vanderheyden" target="_blank">uitstalling.com</a> / <a href="https://www.uitstalling.com/uitstalling-artists/elia-vanderheyden" target="_blank">KUBE Gallery</a><br>Genk, België</span>
+    <div class="hero-left">
+      <h1>Elia Vanderheyden</h1>
+      <p class="birth">b. 2000, Belgium</p>
+      <p class="represented">
+        <span lang-en>Represented by: <a href="https://www.uitstalling.com/uitstalling-artists/elia-vanderheyden" target="_blank">uitstalling.com</a> / <a href="https://www.uitstalling.com/uitstalling-artists/elia-vanderheyden" target="_blank">KUBE Gallery</a><br>Genk, Belgium</span>
+        <span lang-nl>Vertegenwoordigd door: <a href="https://www.uitstalling.com/uitstalling-artists/elia-vanderheyden" target="_blank">uitstalling.com</a> / <a href="https://www.uitstalling.com/uitstalling-artists/elia-vanderheyden" target="_blank">KUBE Gallery</a><br>Genk, België</span>
+      </p>
+      <!-- Short statement — keeps art world visitors on-page immediately -->
+      <p class="hero-statement">
+        <span lang-en>Lasercut woodcut printmaker working at the edge of the sublime and the uncanny — landscapes that invite and repel in equal measure.</span>
+        <span lang-nl>Lasercut houtsnedegraficus op de grens van het sublieme en het onheilspellende — landschappen die tegelijk uitnodigen en afstoten.</span>
+      </p>
+    </div>
+
+    <!-- Square, rounded portrait -->
+    <div class="hero-right">
+      <div class="hero-photo">
+        <img src="./images/MG_8553.jpeg" alt="Elia Vanderheyden">
+      </div>
+    </div>
+
+  </div><!-- /hero -->
+
+
+  <!-- ═══════ FEATURED WORKS STRIP ═══════ -->
+  <!-- Professional standard: show work immediately above the CV.
+       Replace thumb-placeholder divs with <img src="./images/yourwork.jpg"> -->
+  <div class="reveal">
+    <div class="featured-strip">
+      <div class="featured-thumb">
+        <!-- <img src="./images/work1.jpg" alt="There Was Nothing to Fear, Nothing to Doubt"> -->
+        <div class="thumb-placeholder">Work 1</div>
+      </div>
+      <div class="featured-thumb">
+        <!-- <img src="./images/work2.jpg" alt="Untitled"> -->
+        <div class="thumb-placeholder">Work 2</div>
+      </div>
+      <div class="featured-thumb">
+        <!-- <img src="./images/work3.jpg" alt="Untitled"> -->
+        <div class="thumb-placeholder">Work 3</div>
+      </div>
+      <div class="featured-thumb">
+        <!-- <img src="./images/work4.jpg" alt="Untitled"> -->
+        <div class="thumb-placeholder">Work 4</div>
+      </div>
+    </div>
+    <p class="featured-caption">
+      <a href="https://www.artsy.net/artist/elia-vanderheyden" target="_blank">
+        <span lang-en>View full catalogue on Artsy ↗</span>
+        <span lang-nl>Bekijk volledige catalogus op Artsy ↗</span>
+      </a>
     </p>
   </div>
 
-  <div class="hero-right">
-    <div class="hero-photo">
-      <img src="./images/MG_8553.jpeg" alt="Portrait">
-    </div>
-  </div>
 
-</div><!-- /hero -->
-
-   
-  <!-- ═══════════════════════
-       AWARDS
-  ═══════════════════════ -->
+  <!-- ═══════ AWARDS ═══════ -->
   <div class="section reveal">
     <div class="section-label">
       <span lang-en>Awards</span>
@@ -414,9 +497,7 @@ footer {
   </div>
 
 
-  <!-- ═══════════════════════
-       EDUCATION
-  ═══════════════════════ -->
+  <!-- ═══════ EDUCATION ═══════ -->
   <div class="section reveal">
     <div class="section-label">
       <span lang-en>Education</span>
@@ -448,9 +529,7 @@ footer {
   </div>
 
 
-  <!-- ═══════════════════════
-       SOLO EXHIBITIONS
-  ═══════════════════════ -->
+  <!-- ═══════ SOLO EXHIBITIONS ═══════ -->
   <div class="section reveal">
     <div class="section-label">
       <span lang-en>Solo Exhibitions</span>
@@ -473,9 +552,7 @@ footer {
   </div>
 
 
-  <!-- ═══════════════════════
-       GROUP EXHIBITIONS
-  ═══════════════════════ -->
+  <!-- ═══════ GROUP EXHIBITIONS ═══════ -->
   <div class="section reveal">
     <div class="section-label">
       <span lang-en>Selected Group Exhibitions</span>
@@ -591,9 +668,7 @@ footer {
   </div><!-- /group exhibitions -->
 
 
-  <!-- ═══════════════════════
-       ART FAIRS
-  ═══════════════════════ -->
+  <!-- ═══════ ART FAIRS ═══════ -->
   <div class="section reveal">
     <div class="section-label">
       <span lang-en>Art Fairs</span>
@@ -626,15 +701,12 @@ footer {
   </div>
 
 
-  <!-- ═══════════════════════
-       PUBLICATIONS
-  ═══════════════════════ -->
+  <!-- ═══════ PUBLICATIONS ═══════ -->
   <div class="section reveal">
     <div class="section-label">
       <span lang-en>Publications</span>
       <span lang-nl>Publicaties</span>
     </div>
-
     <div class="card">
       <div class="card-title">
         <span lang-en>Artist Books</span>
@@ -645,7 +717,6 @@ footer {
       <div class="cv-row"><span class="cv-year">2023</span><span class="cv-text">Black Series — Antwerp</span></div>
       <div class="cv-row"><span class="cv-year">2022</span><span class="cv-text">A.L.D. — Antwerp</span></div>
     </div>
-
     <div class="card">
       <div class="card-title">
         <span lang-en>Collaborative &amp; Catalogue</span>
@@ -656,19 +727,15 @@ footer {
       <div class="cv-row"><span class="cv-year">2022</span><span class="cv-text">Anonymous Printmakers Book 1: Unseen World</span></div>
       <div class="cv-row"><span class="cv-year">2021</span><span class="cv-text">Anonymous Printmakers Book 0: Hello City</span></div>
     </div>
-
   </div>
 
 
-  <!-- ═══════════════════════
-       PROJECTS & RESIDENCIES
-  ═══════════════════════ -->
+  <!-- ═══════ PROJECTS & RESIDENCIES ═══════ -->
   <div class="section reveal">
     <div class="section-label">
       <span lang-en>Projects &amp; Residencies</span>
       <span lang-nl>Projecten &amp; Residenties</span>
     </div>
-
     <div class="card">
       <div class="card-title">
         <span lang-en>External Projects</span>
@@ -700,7 +767,6 @@ footer {
         <span class="cv-text">The Unthinkable Experiment Chapter Freedom — La Biomista / La Mouseion</span>
       </div>
     </div>
-
     <div class="card">
       <div class="card-title">
         <span lang-en>Residencies</span>
@@ -711,13 +777,10 @@ footer {
         <span class="cv-text">Le Charbonnage Residency — Genk, Belgium</span>
       </div>
     </div>
-
   </div>
 
 
-  <!-- ═══════════════════════
-       COLLECTIONS
-  ═══════════════════════ -->
+  <!-- ═══════ COLLECTIONS ═══════ -->
   <div class="section reveal">
     <div class="section-label">
       <span lang-en>Collections</span>
@@ -733,9 +796,7 @@ footer {
   </div>
 
 
-  <!-- ═══════════════════════
-       LECTURES
-  ═══════════════════════ -->
+  <!-- ═══════ LECTURES ═══════ -->
   <div class="section reveal">
     <div class="section-label">
       <span lang-en>Lectures &amp; Workshops</span>
@@ -761,26 +822,22 @@ footer {
   </div>
 
 
-  <!-- ═══════════════════════
-       CONTACT
-  ═══════════════════════ -->
+  <!-- ═══════ CONTACT ═══════ -->
   <div class="section reveal" style="padding-bottom: 60px;">
     <div class="section-label">Contact</div>
     <div class="contact-grid">
 
-      <!-- EDIT: Artist details -->
       <div class="contact-block">
         <div class="label">
           <span lang-en>Artist</span>
           <span lang-nl>Kunstenaar</span>
         </div>
-        <a href="mailto:eliavanderheyden@pm.me">eliavanderheyden@pm.me</a>
+        <a href="mailto:eliavanderheyden2@gmail.com">eliavanderheyden2@gmail.com</a>
         <a href="tel:+32488096239">+32 488 09 62 39</a>
         <a href="https://www.eliavanderheyden.com" target="_blank">eliavanderheyden.com</a>
         <a href="https://www.instagram.com/eliavanderheyden" target="_blank">@eliavanderheyden</a>
       </div>
 
-      <!-- EDIT: Gallery details -->
       <div class="contact-block">
         <div class="label">
           <span lang-en>Gallery</span>
@@ -788,20 +845,16 @@ footer {
         </div>
         <p>Uitstalling / Kube Gallery</p>
         <a href="https://www.uitstalling.com" target="_blank">uitstalling.com</a>
-        <!-- EDIT: replace with gallery Instagram handle -->
-        <a href="https://www.instagram.com/Uitstalling" target="_blank">@Uitsalling</a>
+        <a href="https://www.instagram.com/Uitstalling" target="_blank">@Uitstalling</a>
       </div>
 
-      <!-- EDIT: Atelier details -->
       <div class="contact-block">
         <div class="label">Atelier Splinter</div>
         <p>
           <span lang-en>Co-founder &amp; Chairman</span>
           <span lang-nl>Medeoprichter &amp; Voorzitter</span>
         </p>
-        <!-- EDIT: replace with real URL -->
-        <a href="#" target="_blank">ateliersplinter.be</a>
-        <!-- EDIT: replace with Splinter Instagram handle -->
+        <a href="https://www.ateliersplinter.com" target="_blank">ateliersplinter.com</a>
         <a href="https://www.instagram.com/atelier.splinter" target="_blank">@atelier.splinter</a>
       </div>
 
@@ -811,18 +864,22 @@ footer {
 </div><!-- /wrap -->
 
 
-<!-- ═══════════════════════
-     FOOTER
-═══════════════════════ -->
+<!-- ═══════ FOOTER ═══════ -->
 <footer>
-  &copy; 2025 Elia Vanderheyden &nbsp;·&nbsp;
-  <span lang-en>All rights reserved</span>
-  <span lang-nl>Alle rechten voorbehouden</span>
+  <span>&copy; 2025 Elia Vanderheyden &nbsp;·&nbsp;
+    <span lang-en>All rights reserved</span>
+    <span lang-nl>Alle rechten voorbehouden</span>
+  </span>
+  <span>
+    <a href="https://www.artsy.net/artist/elia-vanderheyden" target="_blank" style="color:var(--text-dim);">Artsy ↗</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.instagram.com/eliavanderheyden" target="_blank" style="color:var(--text-dim);">Instagram ↗</a>
+  </span>
 </footer>
 
 
 <script>
-  /* ── Language toggle ── */
+  /* Language toggle */
   const btn = document.getElementById('langBtn');
   btn.addEventListener('click', () => {
     const isNL = document.body.classList.toggle('nl');
@@ -830,7 +887,7 @@ footer {
     document.documentElement.lang = isNL ? 'nl' : 'en';
   });
 
-  /* ── Scroll reveal ── */
+  /* Scroll reveal */
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -839,7 +896,6 @@ footer {
       }
     });
   }, { threshold: 0.04, rootMargin: '0px 0px -30px 0px' });
-
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 
