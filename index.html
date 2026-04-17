@@ -340,6 +340,10 @@ nav {
 .cv-text { font-size: 12px; line-height: 1.65; color: var(--text); }
 .cv-text em { color: var(--text-muted); font-style: normal; }
 
+/* ── Alternating row colours ── */
+.cv-row:nth-child(even) .cv-text { color: var(--text-muted); }
+.cv-row:nth-child(even) .cv-year { color: var(--text-dim); }
+   
 .award-tag {
   display: inline-block;
   font-size: 10px;
