@@ -400,7 +400,58 @@ footer {
   color: var(--text-dim);
   text-transform: uppercase;
 }
-@media (max-width: 700px) { footer { padding: 14px 20px; } }
+@media (max-width: 700px) { 
+/* ── Nav: single scrollable row instead of wrapping ── */
+.nav-inner {
+flex-wrap: nowrap;
+overflow-x: auto;
+gap: 6px;
+padding: 10px 16px;
+-webkit-overflow-scrolling: touch;
+}
+.nav-name {
+font-size: 15px;
+white-space: nowrap;
+flex-shrink: 0;
+}
+.nav-right {
+flex-wrap: nowrap;
+flex-shrink: 0;
+}
+.btn-portfolio, .btn-articles, .btn-catalogue {
+font-size: 10px;
+padding: 5px 10px;
+letter-spacing: 0.1em;
+white-space: nowrap;
+}
+
+/* ── Hero: center the photo ── */
+.hero-right {
+align-self: center;
+}
+.hero-left h1 {
+font-size: 30px;
+}
+
+/* ── CV rows: tighten the year column ── */
+.cv-row {
+grid-template-columns: 50px 1fr;
+gap: 4px 10px;
+padding: 8px 0;
+}
+
+/* ── Cards: less side padding on mobile ── */
+.card {
+padding: 10px 14px;
+}
+.cv-row:nth-child(even) {
+margin-left: -14px;
+margin-right: -14px;
+padding-left: 14px;
+padding-right: 14px;
+}
+
+}
 
 /* ══════════ SCROLL REVEAL ══════════ */
 .reveal { opacity: 0; transform: translateY(10px); transition: opacity 0.55s ease, transform 0.55s ease; }
