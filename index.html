@@ -456,9 +456,67 @@ padding-right: 14px;
 /* ══════════ SCROLL REVEAL ══════════ */
 .reveal { opacity: 0; transform: translateY(10px); transition: opacity 0.55s ease, transform 0.55s ease; }
 .reveal.visible { opacity: 1; transform: none; }
+   /* ══════════ LIGHTBOX ══════════ */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(20, 30, 22, 0.92);
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+.lightbox.open { display: flex; }
+
+.lightbox-content {
+  max-width: 880px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.lightbox-content img {
+  max-height: 78vh;
+  max-width: 100%;
+  object-fit: contain;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+
+.lightbox-caption {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  max-width: 600px;
+  line-height: 1.8;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.lightbox-close:hover { border-color: var(--accent); color: var(--accent); }
+
+.featured-thumb { cursor: pointer; }
 </style>
 </head>
 <body>
+   
 
 <!-- ═══════ NAV ═══════ -->
 <nav>
@@ -539,19 +597,19 @@ padding-right: 14px;
        Replace thumb-placeholder divs with <img src="./images/yourwork.jpg"> -->
   <div class="reveal">
     <div class="featured-strip">
-      <div class="featured-thumb">
+      <div class="featured-thumb" data-caption="Stop The Noise, You're breaking me apart. 6x3 meters - Unique printed work 180 panels - Photograph by Lennert Berckx">
         <!-- <img src="./images/work1.jpg" alt="There Was Nothing to Fear, Nothing to Doubt"> -->
         <img src="./images/Werk1.jpeg" alt="Untitled">
       </div>
-      <div class="featured-thumb">
+      <div class="featured-thumb" data-caption="Where have the Birds Gone - Installation of 4x2 meters (1m deep). 26 old-school tv screens displaying various Landscapes, Instalations in collaboration with Superview TV. Digital video-imagery in collaboration with Koen Meyssen. Soundscape in collaboration with Milan Van Oosten. Photograph by Lennert Berckx">
         <!-- <img src="./images/work2.jpg" alt="Untitled"> -->
         <img src="./images/Werk2.jpeg" alt="Untitled">
       </div>
-      <div class="featured-thumb">
+      <div class="featured-thumb" data-caption="untitled & Untitled - Photograph by Lennert Berckx">
         <!-- <img src="./images/work3.jpg" alt="Untitled"> -->
         <img src="./images/Werk3.jpeg" alt="Untitled">
       </div>
-      <div class="featured-thumb">
+      <div class="featured-thumb" data-caption="untitled & Untitled - Photograph by Lennert Berckx">
         <!-- <img src="./images/work4.jpg" alt="Untitled"> -->
         <img src="./images/Werk4.jpeg" alt="Untitled">
       </div>
@@ -615,7 +673,7 @@ padding-right: 14px;
     </div>
     <div class="card">
       <div class="cv-row">
-        <span class="cv-year">2025</span>
+        <span class="cv-year">2025-26</span>
         <span class="cv-text">Where Have The Birds Gone? — Uitstalling/KUBE Gallery, Genk, Belgium</span>
       </div>
       <div class="cv-row">
@@ -797,21 +855,21 @@ padding-right: 14px;
         <span lang-nl>Externe Projecten</span>
       </div>
       <div class="cv-row">
-        <span class="cv-year">2025</span>
+        <span class="cv-year">2026</span>
         <span class="cv-text">
-          <span lang-en>Arresthuis Antwerpen — Commissioned wall tapestry, 17 × 3 m</span>
-          <span lang-nl>Arresthuis Antwerpen — Wandtapijt in opdracht, 17 × 3 m</span>
+          <span lang-en>Arresthuis Antwerpen — Commissioned wall tapestry, 16 × 2.8 m</span>
+          <span lang-nl>Arresthuis Antwerpen — Wandtapijt in opdracht, 16 × 2.8 m</span>
         </span>
       </div>
       <div class="cv-row">
-        <span class="cv-year">2024–</span>
+        <span class="cv-year">2024–present</span>
         <span class="cv-text">
           <span lang-en>Atelier Director — Atelier SPLINTER</span>
           <span lang-nl>Atelierleider — Atelier SPLINTER</span>
         </span>
       </div>
       <div class="cv-row">
-        <span class="cv-year">2021–</span>
+        <span class="cv-year">2021–present</span>
         <span class="cv-text">
           <span lang-en>Co-founder &amp; Chairman — Atelier SPLINTER</span>
           <span lang-nl>Medeoprichter &amp; Voorzitter — Atelier SPLINTER</span>
@@ -882,14 +940,6 @@ padding-right: 14px;
       <span lang-en>Education</span>
       <span lang-nl>Opleiding</span>
     </div>
-    <div class="card">
-      <div class="cv-row">
-        <span class="cv-year">2024–</span>
-        <span class="cv-text">
-          <span lang-en>Master Educative Arts — Royal Academy of Fine Arts Antwerp</span>
-          <span lang-nl>Educatieve Master — Koninklijke Academie voor Schone Kunsten Antwerpen</span>
-        </span>
-      </div>
       <div class="cv-row">
         <span class="cv-year">2022–24</span>
         <span class="cv-text">
@@ -987,6 +1037,15 @@ padding-right: 14px;
   }, { threshold: 0.04, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
-
+   
+<!-- ═══════ LIGHTBOX ═══════ -->
+<div id="lightbox" class="lightbox">
+  <button class="lightbox-close" id="lightboxClose">✕</button>
+  <div class="lightbox-content">
+    <img id="lightboxImg" src="" alt="">
+    <p id="lightboxCaption" class="lightbox-caption"></p>
+  </div>
+</div>
+   
 </body>
 </html>
