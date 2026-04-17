@@ -1016,7 +1016,15 @@ padding-right: 14px;
   </span>
 </footer>
 
-
+  <!-- ═══════ LIGHTBOX ═══════ -->
+<div id="lightbox" class="lightbox">
+  <button class="lightbox-close" id="lightboxClose">✕</button>
+  <div class="lightbox-content">
+    <img id="lightboxImg" src="" alt="">
+    <p id="lightboxCaption" class="lightbox-caption"></p>
+  </div>
+</div>
+   
 <script>
   /* Language toggle */
   const btn = document.getElementById('langBtn');
@@ -1059,14 +1067,7 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') lightbox.classList.remove('open');
 });
 
-   <!-- ═══════ LIGHTBOX ═══════ -->
-<div id="lightbox" class="lightbox">
-  <button class="lightbox-close" id="lightboxClose">✕</button>
-  <div class="lightbox-content">
-    <img id="lightboxImg" src="" alt="">
-    <p id="lightboxCaption" class="lightbox-caption"></p>
-  </div>
-</div>
+
 </script>
    
    
